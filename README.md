@@ -13,7 +13,7 @@ Der Fischerguide zeigt, ob die Bedingungen gerade gut zum Angeln sind. Die Websi
 
 ## Learnings
 
-Ich habe gelernt, wie man Daten von einer externen API abruft und im Browser weiterverarbeitet. Neu war für uns auch, wie man mehrere API-Anfragen gleichzeitig startet und die Ergebnisse zusammenführt. Ausserdem haben wir geübt, den HTML-Inhalt einer Seite dynamisch per JavaScript zu verändern.
+Wir haben gelernt, wie man Daten von einer externen API abruft und im Browser weiterverarbeitet. Neu war für uns auch, wie man mehrere API-Anfragen gleichzeitig startet und die Ergebnisse zusammenführt. Ausserdem haben wir geübt, den HTML-Inhalt einer Seite dynamisch per JavaScript zu verändern.
 
 ## Schwierigkeiten
 
