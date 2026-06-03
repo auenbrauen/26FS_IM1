@@ -21,7 +21,7 @@ Die zwei APIs (Hydro und SMN) liefern ihre Daten in unterschiedlichen Formaten. 
 
 ## Known Bugs
 
-Für den Brienzersee gibt es keinen Trübheitswert. Das liegt daran, dass die Messstation keinen Wert dafür liefert – das kann nicht behoben werden.
+Für den Brienzer - und Thunersee gibt es keinen Trübheitswert. Das liegt daran, dass die Messstation keinen Wert dafür liefert – das kann nicht behoben werden.
 
 ## Ressourcen
 
