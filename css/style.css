@@ -1,11 +1,455 @@
+/* ============================================================
+   Fischerguide – Stylesheet
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap');
+
+/* ── RESET & BASE ── */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body {
-    background-color: pink;
+    background-image: url("/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 20px;
 }
 
+/* ── CARD ── */
+.card {
+    background: white;
+    border-radius: 32px;
+    padding: 40px 48px;
+    max-width: 780px;
+    width: 100%;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+}
+
+/* ── HEADER ── */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 36px;
+    position: relative;
+}
+
+.header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+/* Desktop: See-Liste */
+.lake-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lake-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.lake-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: #ccc;
+}
+
+.lake-dot.active {
+    background-color: #000;
+}
+
+/* Mobile: Trigger-Button */
+.lake-trigger {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: #3333ff;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+}
+
+.lake-trigger .trigger-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+}
+
+.lake-trigger.open .trigger-arrow {
+    transform: rotate(180deg);
+}
+
+/* Mobile: Dropdown-Menü */
+.lake-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    padding: 8px 0;
+    z-index: 100;
+    min-width: 200px;
+}
+
+.lake-dropdown.open {
+    display: block;
+}
+
+.lake-dropdown .lake-option {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #3333ff;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.lake-dropdown .lake-option:hover {
+    background: #f0f0ff;
+}
+
+.lake-dropdown .lake-option.active-option {
+    font-weight: 700;
+}
+
+/* Punkte im Dropdown verstecken */
+.lake-dropdown .lake-dot {
+    display: none;
+}
+
+/* ── ICONS ROW ── */
+.icons-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 8px;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+/* Flip-Container */
+.icon-circle {
+    width: 72px;
+    height: 72px;
+    perspective: 400px;
+}
+
+.icon-flip {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-flip.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Vorder- und Rückseite */
+.icon-front,
+.icon-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #111;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-back {
+    transform: rotateY(180deg);
+}
+
+.icon-front svg {
+    width: 36px;
+    height: 36px;
+    stroke: white;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-back .icon-value {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 6px;
+    line-height: 1.2;
+}
+
+.icon-label {
+    font-size: 0.7rem;
+    color: #333;
+    text-align: center;
+    letter-spacing: 0.01em;
+}
+
+/* ── HAUPTNACHRICHT ── */
+.main-message {
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3333ff;
+    margin-bottom: 28px;
+}
+
+/* ── SPALTEN: FISCH & KÖDER ── */
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.column-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3333ff;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+    text-align: center;
+    width: 100%;
+}
+
+/* ── FISCH ── */
+.fish-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fish-illustration {
+    width: 220px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.fish-illustration img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.fish-name {
+    font-size: 0.85rem;
+    color: #333;
+    text-align: center;
+    width: 100%;
+}
+
+/* ── KÖDER ── */
+.lures-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.lures-grid {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.lure-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.lure-img {
+    width: 100px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lure-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lure-name {
+    font-size: 0.75rem;
+    color: #333;
+}
+
+/* ── MEHRERE FISCHE ── */
+.multi-fish-section {
+    grid-column: 1 / -1;
+}
+
+.multi-labels {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 4px;
+}
+
+/* Jede Fisch+Köder-Zeile */
+.fish-lure-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid #f0f0f0;
+}
+
+.fish-lure-row:first-of-type {
+    border-top: none;
+}
+
+.fish-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lures-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================
+   RESPONSIVE – Mobile (max 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .card {
+        padding: 28px 20px;
+        border-radius: 24px;
+    }
+
+    /* Header: Titel oben, Dropdown darunter zentriert */
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    /* Desktop-Selector verstecken, Trigger anzeigen */
+    .lake-selector { display: none; }
+    .lake-trigger  { display: flex; }
+
+    /* Icons: 3er-Raster */
+    .icons-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        gap: 16px 8px;
+        margin-bottom: 24px;
+    }
+
+    .icon-item:last-child { grid-column: 2; }
+
+    .icon-circle      { width: 56px; height: 56px; }
+    .icon-front svg   { width: 26px; height: 26px; }
+    .icon-label       { font-size: 0.58rem; }
+
+    /* Hauptnachricht */
+    .main-message {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    /* Spalten untereinander */
+    .columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .multi-labels {
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .multi-labels .column-label {
+        flex: 1;
+    }
+
+    .fish-lure-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .column-label {
+        font-size: 0.68rem;
+        padding: 8px 14px;
+        margin-bottom: 14px;
+    }
+
+    .fish-illustration { width: 180px; height: 100px; }
+    .lure-img          { width: 80px;  height: 52px;  }
+}

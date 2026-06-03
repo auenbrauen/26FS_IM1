@@ -1,25 +1,167 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail API</title>
+    <title>Fischerguide</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Vorlage für interaktive Medien II</h1>
 
-    </header>
-    <main>
-        <h2>Main Content</h2>
-        <p>This is the main content of the page.</p>
+    <div class="card">
 
-    </main>
-    <footer>
-        <p>This is the footer of the page.</p>
+        <!-- ── HEADER ── -->
+        <div class="header">
+            <h1>Fischerguide</h1>
 
-    </footer>
+            <!-- Desktop: See-Liste mit Dot-Indikatoren -->
+            <div class="lake-selector">
+                <div class="lake-option">
+                    <div class="lake-dot"></div><span>Bielersee</span>
+                </div>
+                <div class="lake-option">
+                    <div class="lake-dot"></div><span>Brienzersee</span>
+                </div>
+                <div class="lake-option">
+                    <div class="lake-dot"></div><span>Thunersee</span>
+                </div>
+            </div>
+
+            <!-- Mobile: Trigger-Button + Dropdown -->
+            <button class="lake-trigger" id="lakeTrigger" aria-label="See wählen">
+                <span id="triggerLabel">Bielersee</span>
+                <span class="trigger-arrow">▼</span>
+            </button>
+
+            <div class="lake-dropdown" id="lakeDropdown">
+                <div class="lake-option"><span>Bielersee</span></div>
+                <div class="lake-option"><span>Brienzersee</span></div>
+                <div class="lake-option"><span>Thunersee</span></div>
+            </div>
+        </div>
+
+        <!-- ── WETTER-ICONS ── -->
+        <div class="icons-row">
+
+            <div class="icon-item">
+                <div class="icon-circle">
+                    <div class="icon-flip">
+                        <div class="icon-front">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+                            </svg>
+                        </div>
+                        <div class="icon-back"><span class="icon-value">–</span></div>
+                    </div>
+                </div>
+                <span class="icon-label">Windgeschwindigkeit</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle">
+                    <div class="icon-flip">
+                        <div class="icon-front">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+                            </svg>
+                        </div>
+                        <div class="icon-back"><span class="icon-value">–</span></div>
+                    </div>
+                </div>
+                <span class="icon-label">Lufttemperatur</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle">
+                    <div class="icon-flip">
+                        <div class="icon-front">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="5" y1="4" x2="5" y2="20" />
+                                <polyline points="5,4 19,8 5,12" />
+                            </svg>
+                        </div>
+                        <div class="icon-back"><span class="icon-value">–</span></div>
+                    </div>
+                </div>
+                <span class="icon-label">Windrichtung</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle">
+                    <div class="icon-flip">
+                        <div class="icon-front">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+                                <path d="M2 18c1-1 2-1 3 0s2 1 3 0" />
+                                <path d="M14 18c1-1 2-1 3 0s2 1 3 0" />
+                            </svg>
+                        </div>
+                        <div class="icon-back"><span class="icon-value">–</span></div>
+                    </div>
+                </div>
+                <span class="icon-label">Wassertemperatur</span>
+            </div>
+
+            <div class="icon-item">
+                <div class="icon-circle">
+                    <div class="icon-flip">
+                        <div class="icon-front">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                                <line x1="1" y1="1" x2="23" y2="23" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <div class="icon-back"><span class="icon-value">–</span></div>
+                    </div>
+                </div>
+                <span class="icon-label">Wassertrübheit</span>
+            </div>
+
+        </div>
+
+        <!-- ── HAUPTNACHRICHT ── -->
+        <div class="main-message">Jetzt ischs gäbig!</div>
+
+        <!-- ── FISCH & KÖDER ── -->
+        <div class="columns">
+
+            <div class="fish-section">
+                <span class="column-label">Am beste fangsch jetzt:</span>
+                <div class="fish-illustration">
+                    <img src="./images/egli.png" alt="Egli" />
+                </div>
+                <span class="fish-name">Egli</span>
+            </div>
+
+            <div class="lures-section">
+                <span class="column-label">Dezue bruchsch:</span>
+                <div class="lures-grid">
+                    <div class="lure-item">
+                        <div class="lure-img"><img src="./images/gummi.png" alt="Gummi" /></div>
+                        <span class="lure-name">Gummi</span>
+                    </div>
+                    <div class="lure-item">
+                        <div class="lure-img"><img src="./images/topwater.png" alt="Topwater" /></div>
+                        <span class="lure-name">Topwater</span>
+                    </div>
+                    <div class="lure-item">
+                        <div class="lure-img"><img src="./images/nymphe.png" alt="Nymphe" /></div>
+                        <span class="lure-name">Nymphe</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
     <script src="js/script.js" type="module"></script>
 </body>
+
 </html>
